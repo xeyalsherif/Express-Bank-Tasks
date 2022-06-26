@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="category"
+            type="com.example.express_bank_task.models.StatsCategory" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/category_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progress_bar_percent"
+                style="?android:attr/progressBarStyleHorizontal"
+                customProgressDrawable="@{category.type}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_progress"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="@{category.percentageInt}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:progressDrawable="@drawable/circular_progress_bar_blue_light" />
+
+            <ImageView
+                android:id="@+id/image_type"
+                customSrc="@{category.type}"
+                android:layout_width="23dp"
+                android:layout_height="26dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/progress_bar_percent"
+                tools:src="@drawable/ic_airlines" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/text_type"
+            style="@style/ProximaNovaSemiBold16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{category.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Airlines" />
+
+        <TextView
+            android:id="@+id/text_percent"
+            style="@style/ProximaNovaRegular14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{category.percentageWithFormat}"
+            android:textColor="@color/text_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.523"
+            tools:text="22%" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="3dp"
+            android:layout_height="3dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/shape_round"
+            android:backgroundTint="@color/orange"
+            app:layout_constraintBottom_toBottomOf="@+id/text_percent"
+            app:layout_constraintEnd_toStartOf="@+id/text_price"
+            app:layout_constraintTop_toTopOf="@+id/text_percent" />
+
+        <TextView
+            android:id="@+id/text_price"
+            style="@style/ProximaNovaRegular14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{category.price}"
+            android:textColor="@color/text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view"
+            tools:text="1 500 AZN" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/hint_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/text_price"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="stats"
+            type="com.example.express_bank_task.models.StatsCategory" />
+
+        <variable
+            name="date"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_100dp"
+            android:backgroundTint="@color/white" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/shape_10dp_top_left_right"
+            android:backgroundTint="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/background_type"
+                android:layout_width="83dp"
+                android:layout_height="83dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/ic_background_bus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/image_type"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:src="@drawable/ic_transport"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text_title"
+                style="@style/ProximaNovaSemiBold20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="@{stats.name}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Transport" />
+
+            <TextView
+                android:id="@+id/text_date"
+                style="@style/ProximaNovaRegular16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{date}"
+                app:layout_constraintStart_toStartOf="@+id/text_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_title"
+                tools:text="Expences for February 2021" />
+
+            <TextView
+                android:id="@+id/text_price"
+                style="@style/ProximaNovaBold24sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="@{stats.price}"
+                app:layout_constraintStart_toStartOf="@+id/text_date"
+                app:layout_constraintTop_toBottomOf="@+id/text_date"
+                tools:text="1 500 AZN" />
+
+            <TextView
+                android:id="@+id/text_percent"
+                style="@style/ProximaNovaRegular16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{stats.percentageWithFormat2}"
+                android:textColor="@color/text_color"
+                app:layout_constraintBottom_toBottomOf="@+id/text_price"
+                app:layout_constraintStart_toEndOf="@+id/text_price"
+                app:layout_constraintTop_toTopOf="@+id/text_price"
+                tools:text="26% of all" />
+
+            <TextView
+                android:id="@+id/text_search"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/shape_72dp"
+                android:backgroundTint="@color/background"
+                app:layout_constraintTop_toBottomOf="@+id/text_price"
+                tools:layout_editor_absoluteX="162dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_category_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/text_search"
+                tools:itemCount="10"
+                tools:layout_editor_absoluteX="1dp"
+                tools:listitem="@layout/item_category_detail" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+</layout>
