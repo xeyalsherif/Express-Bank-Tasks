@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.express_bank_task.R
@@ -26,6 +27,8 @@ import com.example.express_bank_task.ui.bottom_dialogs.BottomSheetDialog
 import com.example.express_bank_task.utils.ClickListener
 import com.example.express_bank_task.view_model.StatsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class StatsFragment : BaseFragment<FragmentStatsBinding, StatsViewModel>(), ClickListener {
@@ -63,10 +66,12 @@ class StatsFragment : BaseFragment<FragmentStatsBinding, StatsViewModel>(), Clic
     }
 
     private fun collectTheResponse() {
-        viewModel.stats.observe(viewLifecycleOwner) {
-            selectedStatsIndex = 0
-            statsList = it
-            updateUi(it)
+        lifecycleScope.launch {
+            viewModel.stats.collect {
+                selectedStatsIndex = 0
+                statsList = it
+                updateUi(it)
+            }
         }
     }
 

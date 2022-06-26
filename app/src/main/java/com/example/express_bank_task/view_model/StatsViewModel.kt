@@ -8,6 +8,9 @@ import com.example.express_bank_task.base.BaseViewModel
 import com.example.express_bank_task.mock_data.MockData
 import com.example.express_bank_task.models.Stats
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,8 +18,8 @@ import javax.inject.Inject
 class StatsViewModel @Inject constructor(application: Application) : BaseViewModel(application) {
 
     private val _stats =
-        MutableLiveData<List<Stats>>()
-    val stats: LiveData<List<Stats>> get() = _stats
+        MutableStateFlow<List<Stats>>(emptyList())
+    val stats: StateFlow<List<Stats>> get() = _stats.asStateFlow()
 
     init {
         getReportData()
