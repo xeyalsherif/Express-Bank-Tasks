@@ -1,11 +1,5 @@
 package com.example.express_bank_task.ui.fragments
 
-/**
- * Everything is dynamic(Categories work with percent,
- * bottom sheet right icon and background and so on)
- * except the statistical table in the middle),because time...
- **/
-
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
